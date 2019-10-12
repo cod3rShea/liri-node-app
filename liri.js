@@ -8,6 +8,8 @@ let spotify = new spotifyRequire(keys.spotify);
 let fs = require('fs');
 
 var command = process.argv[2]; 
+
+// 
 switch (command) {
     case "concert-this":
         concertThis(value);
@@ -21,4 +23,4 @@ switch (command) {
     case "do-what-it-says":
         doThis(value);
         break;
-};localStorage
+}
