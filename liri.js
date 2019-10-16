@@ -28,12 +28,7 @@ switch (command) {
         break;
 }
 
-
-
-
-
 // concert
-
 function concertThis() {
     axios.get("https://rest.bandsintown.com/artists/" + userValue + "/events?app_id=codingbootcamp")
         .then(function (response) {
@@ -71,7 +66,9 @@ function spotifyThisSong() {
             let data = response.tracks.items;
 
             for(let i =0; i < data.length; i++) {
-                console.log("\n" + data[i].album.name);
+                console.log("Song: " + data[i].name);
+                console.log("Preview Link: " + data[i].preview_url);
+                console.log("Album: " + data[i].album.name  + "\n");
             }
 
         })
