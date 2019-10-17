@@ -111,9 +111,6 @@ function movieThis() {
                 "Actors: " + data.Actors.split(','),
             ].join("\n\n");
 
-
-            console.log(data);
-
             fs.appendFile("log.txt", movieData + divider, function(err) {
                 if (err) throw err;
                 console.log(actorData);
@@ -130,12 +127,6 @@ function movieThis() {
 
 function doWhatItSays(command) {
     
-    fs.readFile("random.txt", "utf8", function(error, data) {
-        if (error) {
-            return console.log(error);
-        }
-        var dataArr = data.split(',');
-        spotifyThisSong(dataArr[0], dataArr[1]);
-    });
+// Not sure what to do here
 
 }
