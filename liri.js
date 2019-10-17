@@ -6,6 +6,7 @@ let keys = require("./keys.js");
 let spotifyRequire = require('node-spotify-api');
 let spotify = new spotifyRequire(keys.spotify);
 let fs = require('fs');
+var divider = "\n------------------------------------------------------------\n\n";
 
 // User Arguments
 var command = process.argv[2];
@@ -100,16 +101,41 @@ function movieThis() {
             console.log("Language: " + data.Language);
             console.log("Plot: " + data.Plot);
             console.log("Actors: " + data.Actors.split(',') + "\n");
+            
+            var movieData = [
+                "Movie Title: " + data.Title,
+                "IMDB Rating: " + data.imdbRating,
+                "Produced IN: " + data.Country,
+                "Language: " + data.Language,
+                "Plot: " + data.Plot,
+                "Actors: " + data.Actors.split(','),
+            ].join("\n\n");
+
 
             console.log(data);
+
+            fs.appendFile("log.txt", movieData + divider, function(err) {
+                if (err) throw err;
+                console.log(actorData);
+
+            })
+
         })
+
         .catch(function (error) {
             // handle error
             console.error("There is no movie title");
         })
 }
 
-function doWhatItSays() {
-
+function doWhatItSays(command) {
+    
+    fs.readFile("random.txt", "utf8", function(error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        var dataArr = data.split(',');
+        spotifyThisSong(dataArr[0], dataArr[1]);
+    });
 
 }
