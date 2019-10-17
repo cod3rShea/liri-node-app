@@ -77,17 +77,36 @@ function spotifyThisSong() {
         });
 }
 
-// * Title of the movie.
-// * Year the movie came out.
-// * IMDB Rating of the movie.
-// * Rotten Tomatoes Rating of the movie.
-// * Country where the movie was produced.
-// * Language of the movie.
-// * Plot of the movie.
-// * Actors in the movie.
+
 
 function movieThis() {
+    if( userValue == ""){
+        userValue = "mr nobody";
+    }
+    axios.get("https://www.omdbapi.com/?t=" + userValue + "&y=&plot=short&apikey=d32f4fa1")
+        .then(function (response) {
+            // * Title of the movie.
+            // * Year the movie came out.
+            // * IMDB Rating of the movie.
+            // * Rotten Tomatoes Rating of the movie.
+            // * Country where the movie was produced.
+            // * Language of the movie.
+            // * Plot of the movie.
+            // * Actors in the movie.
+            const data = response.data;
+            console.log("\n Movie Title: " + data.Title);
+            console.log("IMDB Rating: " + data.imdbRating);
+            console.log("Produced IN: " + data.Country);
+            console.log("Language: " + data.Language);
+            console.log("Plot: " + data.Plot);
+            console.log("Actors: " + data.Actors.split(',') + "\n");
 
+            console.log(data);
+        })
+        .catch(function (error) {
+            // handle error
+            console.error("There is no movie title");
+        })
 }
 
 function doWhatItSays() {
